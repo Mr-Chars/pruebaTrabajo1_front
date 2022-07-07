@@ -1,0 +1,84 @@
+<div class="main-content {{theme.background2}}">
+    <div class="content-wrapper">
+        <section id="full-layout">
+
+            <h1 class="ml-2 mt-3 mb-3 text-bold-600">Empleados </h1>
+
+            <button (click)="modalAddEmpleado()"
+                class="btn btn-raised {{theme.btnType1}} square btn-min-width float-right mr-3 mb-2"> Nuevo empleado
+                <i style="margin-left: 10px;" class="fa fa-plus" aria-hidden="true"></i></button>
+
+
+            <div class="row w-100">
+                <div class="col-12">
+
+                    <div class="input-group mb-2 mt-2 w-100">
+                        <input type="text" [(ngModel)]="empleadoToSearch" (keyup)="searchEmpleado(empleadoToSearch)"
+                            class="form-control border-dark {{theme.background}} {{theme.text}}"
+                            placeholder="Buscar usuario">
+                        <div class="input-group-append">
+                            <span class="input-group-text border-dark {{theme.background}} {{theme.text}}"><i
+                                    class="fa fa-search"></i></span>
+                        </div>
+                    </div>
+
+                    <div *ngIf="STATE_TO_DISPLAY.all===1" class="card">
+                        <div class="card-content {{theme.background}}">
+                            <div class="card-body table-responsive">
+                                <table class="table text-center m-0">
+                                    <thead>
+                                        <tr class="{{theme.text}} text-center">
+                                            <th>#</th>
+                                            <th>Nombre completo</th>
+                                            <th>Apellidos</th>
+                                            <th>fecha nacimiento</th>
+                                            <th>fecha ingresos</th>
+                                            <th>afp</th>
+                                            <th>cargo</th>
+                                            <th>sueldo</th>
+                                            <th class="text-center">Acciones</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <ng-container>
+                                            <ng-container *ngFor="let empleado of emmpleados; index as i" class="">
+                                                <tr class="{{theme.text}} text-left">
+                                                    <td>{{ i+offset+1 }}</td>
+
+                                                    <td>{{ empleado.nombres }}</td>
+                                                    <td>{{ empleado.apellidos }}</td>
+                                                    <td>{{empleado.fecha_nacimiento | date}}</td>
+                                                    <td>{{empleado.fecha_ingreso | date}}</td>
+                                                    <td>{{ empleado.afp }}</td>
+                                                    <td>{{ empleado.cargo }}</td>
+                                                    <td>{{ empleado.sueldo }}</td>
+
+                                                    <td class="text-truncate text-center">
+
+                                                        <a (click)="updateById(empleado.id)" class="success p-0">
+                                                            <i class="ft-edit-2 font-medium-3 mr-2"></i>
+                                                        </a>
+                                                        <a (click)="deleteById(empleado.id)" class="danger p-0">
+                                                            <i class="fa fa-trash font-medium-3"></i>
+                                                        </a>
+                                                    </td>
+                                                </tr>
+                                            </ng-container>
+                                        </ng-container>
+
+                                    </tbody>
+                                </table>
+
+                            </div>
+                        </div>
+                    </div>
+                    <div *ngIf="STATE_TO_DISPLAY.all===0" class="content-wrapper">
+                        <i style="position: absolute;top: 170px;left: 50%;margin: -35px 0 0 -35px;"
+                            class="fa fa-spinner fa-spin fa-3x fa-fw"></i>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+    </div>
+</div>

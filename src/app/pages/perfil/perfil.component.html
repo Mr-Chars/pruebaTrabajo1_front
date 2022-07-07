@@ -1,0 +1,432 @@
+<div class="main-content {{theme.background2}} {{theme.text}}">
+    <div class="content-wrapper">
+        <section id="full-layout" style="height: auto;overflow: auto;">
+
+
+            <div class="main-panel">
+                <div class="content-wrapper {{theme.background2}} {{theme.text}}">
+                    <!--Basic User Details Starts-->
+                    <section id="user-profile">
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="card profile-with-cover {{theme.background}}">
+                                    <div class="card-img-top img-fluid bg-cover height-300"
+                                        style="background: url('assets/img/photos/15.jpg') 50%;"></div>
+                                    <div class="media profil-cover-details row">
+                                        <div class="col-5">
+
+                                        </div>
+                                        <div class="col-2">
+                                            <div class="align-self-center halfway-fab text-center">
+                                                <a class="profile-image">
+                                                    <img src="assets/img/portrait/avatars/avatar-08.png"
+                                                        class="rounded-circle img-border gradient-light-blue-indigo width-100"
+                                                        alt="Card image">
+                                                </a>
+                                            </div>
+                                        </div>
+                                        <div class="col-5">
+                                        </div>
+                                        <div class="profile-cover-buttons">
+                                            <div class="media-body halfway-fab align-self-end">
+
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="profile-section">
+                                        <div class="row">
+                                            <div class="col-lg-5 col-md-5 ">
+                                                <ul class="profile-menu no-list-style">
+                                                    <li>
+
+                                                    </li>
+                                                    <li>
+
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                            <div class="col-lg-2 col-md-2 text-center">
+                                                <span class="font-medium-2 text-uppercase">
+                                                    {{ detalleUsuario.Nombres }} {{ detalleUsuario.ApellidoPaterno}} {{
+                                                    detalleUsuario.ApellidoMaterno}}
+                                                </span>
+                                                <p class="grey font-small-2">Ninja Developer</p>
+                                            </div>
+                                            <div class="col-lg-5 col-md-5">
+                                                <ul class="profile-menu no-list-style">
+                                                    <li>
+
+                                                    </li>
+                                                    <li>
+
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                    <!--Basic User Details Ends-->
+
+
+                    <!--About section starts-->
+                    <section>
+
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <div class="card {{theme.background}} {{theme.text}}">
+                                    <div class="card-header">
+                                        <h5 class="d-inline-block">Información personal:</h5>
+
+                                        <button *ngIf="estadoDetalleUsuario==='visual'"
+                                            (click)="mostrarModificarDetalleUsuario('edicion')" type="button"
+                                            class="btn {{theme.btnType1}} btn-raised mr-2 float-right">
+                                            <i class="fa fa-plus"></i> Modificar información
+                                        </button>
+                                    </div>
+                                    <div class="card-content">
+                                        <div class="card-body">
+                                            <form ngNativeValidate (ngSubmit)="guardarDatos()">
+                                                <div class="mb-3">
+                                                    <span class="text-bold-500 {{theme.text}}">Presentación:</span>
+
+                                                    <span *ngIf="estadoDetalleUsuario==='edicion'"
+                                                        class="d-block overflow-hidden text-center">
+                                                        <textarea [(ngModel)]="detalleUsuario.AcercaDeMi"
+                                                            class="form-control" cols="120" rows="5"
+                                                            name="txt_AcercaDeMi">
+                                        </textarea>
+                                                    </span>
+
+                                                    <span *ngIf="estadoDetalleUsuario==='visual'"
+                                                        class="d-block overflow-hidden">
+                                                        {{ detalleUsuario.AcercaDeMi }}
+                                                    </span>
+                                                </div>
+                                                <hr>
+
+
+                                                <div class="row">
+                                                    <div class="col-12 col-md-6 col-lg-4">
+                                                        <ul class="no-list-style pl-0">
+                                                            <li class="mb-2">
+                                                                <span
+                                                                    class="text-bold-500 font-medium-3 {{theme.text}}">
+                                                                    <a><i class="icon-present font-medium-3"></i>
+                                                                        Nombres:</a></span>
+                                                                <span *ngIf="estadoDetalleUsuario==='edicion'"
+                                                                    class="d-block overflow-hidden">
+                                                                    <input [(ngModel)]="detalleUsuario.Nombres"
+                                                                        class="form-control" type="text"
+                                                                        name="txt_nombres" autocomplete="none">
+                                                                </span>
+                                                                <span *ngIf="estadoDetalleUsuario==='visual'"
+                                                                    class="d-block overflow-hidden">
+                                                                    {{ detalleUsuario.Nombres }}
+                                                                </span>
+                                                                <div *ngIf="detalleUsuarioError.Nombres!==''"
+                                                                    class="text-danger">
+                                                                    <ul role="alert">
+                                                                        <li>{{detalleUsuarioError.Nombres}}</li>
+                                                                    </ul>
+                                                                </div>
+                                                            </li>
+                                                            <li class="mb-2">
+                                                                <span
+                                                                    class="text-bold-500 font-medium-3 {{theme.text}}"><a><i
+                                                                            class="ft-map-pin font-medium-3"></i>
+                                                                        Domicilio:</a></span>
+                                                                <span *ngIf="estadoDetalleUsuario==='edicion'"
+                                                                    class="d-block overflow-hidden">
+                                                                    <input [(ngModel)]="detalleUsuario.Domicilio"
+                                                                        class="form-control" type="text"
+                                                                        name="txt_domicilio" autocomplete="none">
+                                                                </span>
+                                                                <span *ngIf="estadoDetalleUsuario==='visual'"
+                                                                    class="d-block overflow-hidden">
+                                                                    {{ detalleUsuario.Domicilio }}
+                                                                </span>
+                                                                <div *ngIf="detalleUsuarioError.Domicilio!==''"
+                                                                    class="text-danger">
+                                                                    <ul role="alert">
+                                                                        <li>{{detalleUsuarioError.Domicilio}}</li>
+                                                                    </ul>
+                                                                </div>
+                                                            </li>
+                                                            <li class="mb-2">
+                                                                <span
+                                                                    class="text-bold-500 font-medium-3 {{theme.text}}"><a><i
+                                                                            class="ft-user font-medium-3"></i> País de
+                                                                        nacimiento:</a></span>
+                                                                <span *ngIf="estadoDetalleUsuario==='edicion'"
+                                                                    class="d-block overflow-hidden">
+                                                                    <input [(ngModel)]="detalleUsuario.PaisNacimiento"
+                                                                        class="form-control" type="text"
+                                                                        name="txt_paisNacimiento" autocomplete="none">
+                                                                </span>
+                                                                <span *ngIf="estadoDetalleUsuario==='visual'"
+                                                                    class="d-block overflow-hidden">
+                                                                    {{ detalleUsuario.PaisNacimiento }}
+                                                                </span>
+                                                                <div *ngIf="detalleUsuarioError.PaisNacimiento!==''"
+                                                                    class="text-danger">
+                                                                    <ul role="alert">
+                                                                        <li>{{detalleUsuarioError.PaisNacimiento}}</li>
+                                                                    </ul>
+                                                                </div>
+                                                            </li>
+
+                                                        </ul>
+                                                    </div>
+
+                                                    <div class="col-12 col-md-6 col-lg-4">
+                                                        <ul class="no-list-style pl-0">
+                                                            <li class="mb-2">
+                                                                <span
+                                                                    class="text-bold-500 font-medium-3 {{theme.text}}"><a><i
+                                                                            class="ft-map-pin font-medium-3"></i>
+                                                                        Apellido Paterno:</a></span>
+                                                                <span *ngIf="estadoDetalleUsuario==='edicion'"
+                                                                    class="d-block overflow-hidden">
+                                                                    <input [(ngModel)]="detalleUsuario.ApellidoPaterno"
+                                                                        class="form-control" type="text"
+                                                                        name="txt_apellidoPaterno" autocomplete="none">
+                                                                </span>
+                                                                <span *ngIf="estadoDetalleUsuario==='visual'"
+                                                                    class="d-block overflow-hidden">
+                                                                    {{ detalleUsuario.ApellidoPaterno }}
+                                                                </span>
+                                                                <div *ngIf="detalleUsuarioError.ApellidoPaterno!==''"
+                                                                    class="text-danger">
+                                                                    <ul role="alert">
+                                                                        <li>{{detalleUsuarioError.ApellidoPaterno}}</li>
+                                                                    </ul>
+                                                                </div>
+                                                            </li>
+                                                            <li class="mb-2">
+                                                                <span
+                                                                    class="text-bold-500 font-medium-3 {{theme.text}}"><a><i
+                                                                            class="icon-present font-medium-3"></i> N°
+                                                                        Celular:</a></span>
+                                                                <span *ngIf="estadoDetalleUsuario==='edicion'"
+                                                                    class="d-block overflow-hidden">
+                                                                    <input [(ngModel)]="detalleUsuario.NCelular"
+                                                                        class="form-control" type="number"
+                                                                        name="txt_nCelular">
+                                                                </span>
+                                                                <span *ngIf="estadoDetalleUsuario==='visual'"
+                                                                    class="d-block overflow-hidden">
+                                                                    {{ detalleUsuario.NCelular }}
+                                                                </span>
+                                                                <div *ngIf="detalleUsuarioError.NCelular!==''"
+                                                                    class="text-danger">
+                                                                    <ul role="alert">
+                                                                        <li>{{detalleUsuarioError.NCelular}}</li>
+                                                                    </ul>
+                                                                </div>
+                                                            </li>
+                                                            <li class="mb-2">
+                                                                <span
+                                                                    class="text-bold-500 font-medium-3 {{theme.text}}"><a><i
+                                                                            class="ft-globe font-medium-3"></i> Ciudad
+                                                                        de
+                                                                        nacimiento:</a></span>
+                                                                <span *ngIf="estadoDetalleUsuario==='edicion'"
+                                                                    class="d-block overflow-hidden">
+                                                                    <input [(ngModel)]="detalleUsuario.CiudadNacimiento"
+                                                                        class="form-control" type="text"
+                                                                        name="txt_ciudadNacimiento" autocomplete="none">
+                                                                </span>
+                                                                <span *ngIf="estadoDetalleUsuario==='visual'"
+                                                                    class="d-block overflow-hidden">
+                                                                    {{ detalleUsuario.CiudadNacimiento }}
+                                                                </span>
+                                                                <div *ngIf="detalleUsuarioError.CiudadNacimiento!==''"
+                                                                    class="text-danger">
+                                                                    <ul role="alert">
+                                                                        <li>{{detalleUsuarioError.CiudadNacimiento}}
+                                                                        </li>
+                                                                    </ul>
+                                                                </div>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+
+                                                    <div class="col-12 col-md-6 col-lg-4">
+                                                        <ul class="no-list-style pl-0">
+                                                            <li class="mb-2">
+                                                                <span
+                                                                    class="text-bold-500 font-medium-3 {{theme.text}}"><a><i
+                                                                            class="ft-globe font-medium-3"></i> Apellido
+                                                                        Materno:</a></span>
+                                                                <span *ngIf="estadoDetalleUsuario==='edicion'"
+                                                                    class="d-block overflow-hidden">
+                                                                    <input [(ngModel)]="detalleUsuario.ApellidoMaterno"
+                                                                        class="form-control" type="text"
+                                                                        name="txt_apellidoMaterno" autocomplete="none">
+                                                                </span>
+                                                                <span *ngIf="estadoDetalleUsuario==='visual'"
+                                                                    class="d-block overflow-hidden">
+                                                                    {{ detalleUsuario.ApellidoMaterno }}
+                                                                </span>
+                                                                <div *ngIf="detalleUsuarioError.ApellidoMaterno!==''"
+                                                                    class="text-danger">
+                                                                    <ul role="alert">
+                                                                        <li>{{detalleUsuarioError.ApellidoMaterno}}</li>
+                                                                    </ul>
+                                                                </div>
+                                                            </li>
+
+                                                            <li class="mb-2">
+                                                                <span
+                                                                    class="text-bold-500 font-medium-3 {{theme.text}}"><a><i
+                                                                            class="ft-mail font-medium-3"></i> N°
+                                                                        Teléfono:</a></span>
+                                                                <span *ngIf="estadoDetalleUsuario==='edicion'"
+                                                                    class="d-block overflow-hidden">
+                                                                    <input [(ngModel)]="detalleUsuario.NTelefono"
+                                                                        class="form-control" type="number"
+                                                                        name="txt_nTelefono">
+                                                                </span>
+                                                                <span *ngIf="estadoDetalleUsuario==='visual'"
+                                                                    class="d-block overflow-hidden">
+                                                                    {{ detalleUsuario.NTelefono }}
+                                                                </span>
+                                                                <div *ngIf="detalleUsuarioError.NTelefono!==''"
+                                                                    class="text-danger">
+                                                                    <ul role="alert">
+                                                                        <li>{{detalleUsuarioError.NTelefono}}</li>
+                                                                    </ul>
+                                                                </div>
+                                                            </li>
+
+                                                        </ul>
+                                                    </div>
+
+                                                    <div class="col-12 mt-3">
+                                                        <button *ngIf="estadoDetalleUsuario==='edicion'"
+                                                            class="btn btn-primary float-right m-2"
+                                                            type="submit">Guardar datos</button>
+                                                        <button (click)="mostrarModificarDetalleUsuario('visual',true)"
+                                                            *ngIf="estadoDetalleUsuario==='edicion'"
+                                                            class="btn btn-danger float-right m-2"
+                                                            type="button">Cancelar</button>
+                                                    </div>
+
+                                                </div>
+
+
+
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-sm-12">
+                                <div class="card {{theme.background}} {{theme.text}}">
+                                    <div class="card-header">
+                                        <h5 class="d-inline-block">Información Usuario:</h5>
+                                    </div>
+                                    <div class="card-content">
+                                        <div class="card-body">
+                                            <form ngNativeValidate (ngSubmit)="ActualizarContrasena()">
+
+                                                <div class="row">
+                                                    <div class="col-12">
+                                                        <ul class="no-list-style pl-0">
+                                                            <li class="mb-2">
+                                                                <span
+                                                                    class="text-bold-500 font-medium-3 {{theme.text}}"><a><i
+                                                                            class="icon-present font-medium-3"></i>
+                                                                        Email:</a></span>
+                                                                <span class="d-block overflow-hidden">
+                                                                    {{ emailUsuario }}
+                                                                </span>
+                                                            </li>
+
+                                                        </ul>
+                                                    </div>
+
+                                                    <div class="col-12 col-md-6 col-lg-4">
+                                                        <ul class="no-list-style pl-0">
+                                                            <li class="mb-2">
+                                                                <span
+                                                                    class="text-bold-500 font-medium-3 {{theme.text}}"><a><i
+                                                                            class="icon-present font-medium-3"></i>
+                                                                        Contraseña Actual:</a></span>
+                                                                <span class="d-block overflow-hidden">
+                                                                    <input
+                                                                        [(ngModel)]="modelContrasenas.contrasena_actual"
+                                                                        class="form-control" type="password"
+                                                                        name="contrasena_actual">
+                                                                </span>
+                                                            </li>
+
+                                                        </ul>
+                                                    </div>
+
+                                                    <div class="col-12 col-md-6 col-lg-4">
+                                                        <ul class="no-list-style pl-0">
+                                                            <li class="mb-2">
+                                                                <span
+                                                                    class="text-bold-500 font-medium-3 {{theme.text}}"><a><i
+                                                                            class="icon-present font-medium-3"></i>
+                                                                        Contraseña Nueva:</a></span>
+                                                                <span class="d-block overflow-hidden">
+                                                                    <input
+                                                                        [(ngModel)]="modelContrasenas.contrasena_nueva"
+                                                                        class="form-control" type="password"
+                                                                        name="contrasena_nueva">
+                                                                </span>
+                                                            </li>
+
+                                                        </ul>
+                                                    </div>
+
+                                                    <div class="col-12 col-md-6 col-lg-4">
+                                                        <ul class="no-list-style pl-0">
+                                                            <li class="mb-2">
+                                                                <span
+                                                                    class="text-bold-500 font-medium-3 {{theme.text}}"><a><i
+                                                                            class="icon-present font-medium-3"></i>
+                                                                        Confirmar Contraseña Nueva:</a></span>
+                                                                <span class="d-block overflow-hidden">
+                                                                    <input
+                                                                        [(ngModel)]="modelContrasenas.contrasena_nueva_rep"
+                                                                        class="form-control" type="password"
+                                                                        name="contrasena_nueva_rep">
+                                                                </span>
+                                                            </li>
+
+                                                        </ul>
+                                                    </div>
+
+
+                                                    <div class="col-12 mt-3">
+                                                        <button class="btn btn-primary float-right m-2"
+                                                            type="submit">Modificar Contraseña</button>
+                                                    </div>
+
+                                                </div>
+
+
+
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </section>
+                    <!--About section ends-->
+                </div>
+            </div>
+
+        </section>
+    </div>
+</div>

@@ -1,0 +1,113 @@
+<div class="fondo-negro animated fadeIn" [ngClass]="__ModalEmpleadoService.oculto">
+
+    <div class="modal" style="display:block;" tabindex="-1" role="dialog">
+
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content {{theme.background2}} {{theme.text}}" style="overflow: auto;height: 585px;">
+                <div class="modal-header">
+                    <h2 class="modal-title">Agregar empleado</h2>
+
+                    <button (click)="closeModal()" type="button" class="close text-danger font-large-2"
+                        aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body" align="center">
+
+                    <div class="card-body">
+
+                        <div class="form-group row">
+                            <label class="col-md-3 label-control font-medium-3 text-left">Nombre</label>
+                            <div class="col-md-9">
+                                <input [(ngModel)]="EMPLEADO_DATA.nombres" autocomplete="none" type="text"
+                                    class="form-control {{theme.background}} {{theme.text}}" name="nombre">
+                                <p class="text-danger">{{EMPLEADO_DATA_ERROR.nombres}}</p>
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label class="col-md-3 label-control font-medium-3 text-left">Apellidos</label>
+                            <div class="col-md-9">
+                                <input [(ngModel)]="EMPLEADO_DATA.apellidos" autocomplete="none" type="text"
+                                    class="form-control {{theme.background}} {{theme.text}}" name="nombre">
+                                <p class="text-danger">{{EMPLEADO_DATA_ERROR.apellidos}}</p>
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <div class="col-md-6">
+                                <div class="form-group row">
+                                    <label class="col-md-3 label-control font-medium-3 text-left">Fecha de
+                                        nacimiento</label>
+                                    <div class="col-md-9">
+                                        <input [(ngModel)]="EMPLEADO_DATA.fecha_nacimiento" autocomplete="none"
+                                            type="date" class="form-control {{theme.background}} {{theme.text}}"
+                                            name="nombre">
+                                        <p class="text-danger">{{EMPLEADO_DATA_ERROR.fecha_nacimiento}}</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group row">
+                                    <label class="col-md-3 label-control font-medium-3 text-left">Fecha de
+                                        ingreso</label>
+                                    <div class="col-md-9">
+                                        <input [(ngModel)]="EMPLEADO_DATA.fecha_ingreso" autocomplete="none" type="date"
+                                            class="form-control {{theme.background}} {{theme.text}}" name="nombre">
+                                        <p class="text-danger">{{EMPLEADO_DATA_ERROR.fecha_ingreso}}</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label class="col-md-3 label-control font-medium-3 text-left">Afp</label>
+                            <div class="col-md-9">
+                                <select [(ngModel)]="EMPLEADO_DATA.afp" name="users-list-role"
+                                    class="form-control {{theme.background}} {{theme.text}}">
+                                    <option *ngFor="let afp of AFP_TYPE" value="{{afp}}"> {{afp}}</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <div class="col-md-6">
+                                <div class="form-group row">
+                                    <label class="col-md-3 label-control font-medium-3 text-left">Cargo</label>
+                                    <div class="col-md-9">
+                                        <input [(ngModel)]="EMPLEADO_DATA.cargo" autocomplete="none" type="text"
+                                            class="form-control {{theme.background}} {{theme.text}}" name="nombre">
+                                        <p class="text-danger">{{EMPLEADO_DATA_ERROR.cargo}}</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group row">
+                                    <label class="col-md-3 label-control font-medium-3 text-left">Sueldo</label>
+                                    <div class="col-md-9">
+                                        <input [(ngModel)]="EMPLEADO_DATA.sueldo" autocomplete="none" type="text"
+                                            class="form-control {{theme.background}} {{theme.text}}" name="nombre">
+                                        <p class="text-danger">{{EMPLEADO_DATA_ERROR.sueldo}}</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+                    <button (click)="closeModal()" type="button" class="btn btn-danger btn-lg"
+                        style="padding-top: 2px !important;">cerrar</button>
+
+                    <button *ngIf="__ModalEmpleadoService.idEmpleado === 0" (click)="add()" type="button"
+                        class="btn btn-primary btn-lg" style="padding-top: 2px !important;">Agregar</button>
+
+                    <button *ngIf="__ModalEmpleadoService.idEmpleado > 0" (click)="update()" type="button"
+                        class="btn btn-primary btn-lg" style="padding-top: 2px !important;">Actualizar</button>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>

@@ -1,0 +1,110 @@
+<div class="fondo-negro animated fadeIn" [ngClass]="__modalUsuarioService.oculto">
+
+  <div class="modal" style="display:block;" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content {{theme.background2}} {{theme.text}}">
+        <div class="modal-header">{{__modalUsuarioService.oculto}}
+
+
+          <h2 *ngIf="__modalUsuarioService.opcion==='agregarUsuario'" class="modal-title">Agregar Usuario</h2>
+          <h2 *ngIf="__modalUsuarioService.opcion==='updatePassword'" class="modal-title">Actualizar Usuario</h2>
+
+          <button (click)="cerrarModal()" type="button" class="close text-danger font-large-2" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body" align="center">
+
+          <div *ngIf="__modalUsuarioService.opcion==='agregarUsuario'" class="card-body">
+
+            <div class="form-group row">
+              <label class="col-md-3 label-control" for="striped-form-4">E-mail</label>
+              <div class="col-md-9">
+                <input [(ngModel)]="USUARIO_DATA.email" autocomplete="none" type="email" id="striped-form-4"
+                  class="form-control {{theme.background}} {{theme.text}}" name="email2" placeholder="E-mail">
+              </div>
+            </div>
+
+            <div class="form-group row">
+              <label class="col-md-3 label-control" for="striped-form-1">Contraseña</label>
+              <div class="col-md-9">
+                <input [(ngModel)]="USUARIO_DATA.password" type="password" id="striped-form-1"
+                  class="form-control {{theme.background}} {{theme.text}}" name="fullname" placeholder="Password">
+              </div>
+            </div>
+
+            <div class="form-group row">
+              <label class="col-md-3 label-control" for="striped-form-1">Rol</label>
+              <div class="col-md-9">
+                <select [(ngModel)]="USUARIO_DATA.rol" name="users-list-role"
+                  class="form-control {{theme.background}} {{theme.text}}">
+                  <option value="ADMINISTRADOR">ADMINISTRADOR</option>
+                  <option value="COLABORADOR">COLABORADOR</option>
+                </select>
+              </div>
+            </div>
+
+          </div>
+
+          <div *ngIf="__modalUsuarioService.opcion==='updatePassword'" class="card-body">
+
+            <div class="form-group row">
+              <label class="col-md-3 label-control" for="striped-form-1">Rol</label>
+              <div class="col-md-9">
+                <select [(ngModel)]="PASSWORD_DATA.role" name="role"
+                  class="form-control {{theme.background}} {{theme.text}}">
+                  <option value="ADMINISTRADOR">ADMINISTRADOR</option>
+                  <option value="COLABORADOR">COLABORADOR</option>
+                </select>
+
+              </div>
+            </div>
+
+            <div class="form-group row">
+              <label class="col-md-3 label-control" for="striped-form-1">Estado</label>
+              <div class="col-md-9">
+                <select [(ngModel)]="PASSWORD_DATA.estado" name="estado"
+                  class="form-control {{theme.background}} {{theme.text}}">
+                  <option value="1">HABILITADO</option>
+                  <option value="0">DESHABILITADO</option>
+                </select>
+
+              </div>
+            </div>
+
+            <div class="form-group row">
+              <label class="col-md-3 label-control" for="striped-form-1">Cambiar contraseña</label>
+              <div class="col-md-9">
+                <input (click)="changeOption()" type="checkbox"
+                  class="form-control {{theme.background}} {{theme.text}}">
+              </div>
+            </div>
+
+            <div *ngIf="optionCambioPass===1" class="form-group row">
+              <label class="col-md-3 label-control" for="striped-form-1">Nueva contraseña</label>
+              <div class="col-md-9">
+                <input [(ngModel)]="PASSWORD_DATA.new_password" type="password"
+                  class="form-control {{theme.background}} {{theme.text}}" name="fullname" placeholder="Password">
+              </div>
+            </div>
+
+            <div *ngIf="optionCambioPass===1" class="form-group row">
+              <label class="col-md-3 label-control" for="striped-form-1">Repita la nueva contraseña</label>
+              <div class="col-md-9">
+                <input [(ngModel)]="PASSWORD_DATA.new_password2" type="password"
+                  class="form-control {{theme.background}} {{theme.text}}" name="fullname" placeholder="Password">
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button *ngIf="__modalUsuarioService.opcion==='agregarUsuario'" (click)="agregarUsuario()" type="button"
+            id="btn_add_user" class="btn btn-primary">Agregar</button>
+          <button *ngIf="__modalUsuarioService.opcion==='updatePassword'" (click)="updatePassword()" type="button"
+            id="btn_updatePassword" class="btn btn-primary">Actualizar</button>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

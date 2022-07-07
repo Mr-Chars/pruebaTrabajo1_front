@@ -1,0 +1,21 @@
+<div class="main-content">
+    <div class="content-wrapper">
+        <section id="taskboard">
+
+            <h1 style="line-break: anywhere;" class="ml-2 mt-3 mb-3 text-bold-600">Configuración </h1>
+
+            <div class="form-group row mt-3">
+                <label class="col-md-3 label-control font-medium-3">Tema oscuro</label>
+                <div class="col-md-9">
+
+                    <i (click)="setTheme('dark')" *ngIf="darkTheme===0"
+                        class="toggle-icon ft-toggle-right cursor-pointer"></i>
+
+                    <i (click)="setTheme('light')" *ngIf="darkTheme===1"
+                        class="toggle-icon ft-toggle-left cursor-pointer"></i>
+                </div>
+            </div>
+
+        </section>
+    </div>
+</div>
